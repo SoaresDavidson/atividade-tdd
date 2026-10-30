@@ -19,6 +19,10 @@ def test_exemplo_quantidade_total(pedido_pequeno):
 # =============================================================
 
 
+def test_subtotal_multiplica_preco_pela_quantidade(pedido_pequeno):
+    # 1 x 6,00 + 2 x 4,50 = 15,00
+    assert pedido_pequeno.subtotal() == 15.0
+
 
 # =============================================================
 # PARTE 2 — Implemente com TDD
