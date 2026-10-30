@@ -78,6 +78,10 @@ def test_contar_frete_gratis_lista_mista(pedido_pequeno, pedido_grande):
 # Escreva os testes ANTES de implementar o método
 
 
+def test_situacao_tudo_disponivel_abaixo_de_50_confirmado(pedido_pequeno):
+    # pedido_pequeno: subtotal 15,00, nenhuma unidade indisponível
+    assert pedido_pequeno.situacao(0) == "Confirmado"
+
 
 # Requisito 3 — sugerir_frete_gratis(sms_service) -> None
 # Use MagicMock para simular o serviço de SMS
