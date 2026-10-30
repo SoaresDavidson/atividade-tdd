@@ -123,3 +123,9 @@ def test_nao_sugerir_frete_gratis_se_ja_tem(pedido_grande):
     sms_service_mock.enviar.assert_not_called()
 
 
+def test_sugerir_frete_gratis_valor_exato():
+    # Teste para garantir que o valor sugerido é correto quando o subtotal é 49,99
+    pedido = Pedido("Carlos", [Item("Produto A", 50.0, 1)])
+    sms_service_mock = MagicMock()
+    pedido.sugerir_frete_gratis(sms_service_mock)
+    sms_service_mock.enviar.assert_not_called()  # Não deve sugerir frete grátis, pois subtotal é 50,00
