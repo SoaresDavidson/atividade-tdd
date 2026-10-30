@@ -7,6 +7,7 @@ from pedido.pedido import Item, Pedido, contar_frete_gratis
 # EXEMPLO — um teste pronto, para você copiar o formato
 # =============================================================
 
+
 def test_exemplo_quantidade_total(pedido_pequeno):
     # 1 café + 2 pães de queijo = 3 unidades
     assert pedido_pequeno.quantidade_total() == 3
@@ -88,7 +89,9 @@ def test_situacao_tudo_disponivel_a_partir_de_50_confirmado_com_frete(pedido_gra
     assert pedido_grande.situacao(0) == "Confirmado com frete grátis"
 
 
-def test_situacao_mais_de_25_por_cento_indisponivel_cancela_mesmo_com_frete(pedido_grande):
+def test_situacao_mais_de_25_por_cento_indisponivel_cancela_mesmo_com_frete(
+    pedido_grande,
+):
     # pedido_grande: 5 unidades, subtotal 73,00; 2 indisponíveis = 40%
     assert pedido_grande.situacao(2) == "Cancelado por falta de estoque"
 
@@ -108,3 +111,7 @@ def test_situacao_pouco_acima_de_25_por_cento_cancela():
 # Requisito 3 — sugerir_frete_gratis(sms_service) -> None
 # Use MagicMock para simular o serviço de SMS
 # Escreva os testes ANTES de implementar o método
+def test_sugerir_frete_gratits(pedido_pequeno):
+    sms_service_mock = MagicMock()
+    pedido_pequeno.sugerir_frete_gratis(sms_service_mock)
+    sms_service_mock.enviar.assert_called_once_with("Bruno", 15.0)
