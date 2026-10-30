@@ -24,6 +24,12 @@ def test_subtotal_multiplica_preco_pela_quantidade(pedido_pequeno):
     assert pedido_pequeno.subtotal() == 15.0
 
 
+def test_frete_gratis_com_subtotal_exatamente_50():
+    # 30,00 + 20,00 = 50,00, que já dá direito a frete grátis
+    pedido = Pedido("Carlos", [Item("Produto A", 30.0, 1), Item("Produto B", 20.0, 1)])
+    assert pedido.tem_frete_gratis() is True
+
+
 # =============================================================
 # PARTE 2 — Implemente com TDD
 # Siga o ciclo: 🔴 escreva o teste → 🟢 implemente → 🟡 refatore
