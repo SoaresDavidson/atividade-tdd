@@ -30,6 +30,11 @@ def test_frete_gratis_com_subtotal_exatamente_50():
     assert pedido.tem_frete_gratis() is True
 
 
+def test_item_mais_barato_retorna_menor_preco(pedido_pequeno):
+    # Café 6,00 x Pão de queijo 4,50: o mais barato é o pão de queijo
+    assert pedido_pequeno.item_mais_barato().nome == "Pão de queijo"
+
+
 # =============================================================
 # PARTE 2 — Implemente com TDD
 # Siga o ciclo: 🔴 escreva o teste → 🟢 implemente → 🟡 refatore
