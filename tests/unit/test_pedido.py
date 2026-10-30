@@ -115,3 +115,11 @@ def test_sugerir_frete_gratits(pedido_pequeno):
     sms_service_mock = MagicMock()
     pedido_pequeno.sugerir_frete_gratis(sms_service_mock)
     sms_service_mock.enviar.assert_called_once_with("Bruno", 35.0)
+
+
+def test_nao_sugerir_frete_gratis_se_ja_tem(pedido_grande):
+    sms_service_mock = MagicMock()
+    pedido_grande.sugerir_frete_gratis(sms_service_mock)
+    sms_service_mock.enviar.assert_not_called()
+
+
