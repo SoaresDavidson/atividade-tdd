@@ -35,6 +35,12 @@ def test_item_mais_barato_retorna_menor_preco(pedido_pequeno):
     assert pedido_pequeno.item_mais_barato().nome == "Pão de queijo"
 
 
+def test_total_com_desconto_subtrai_o_percentual():
+    # 100,00 com 10% de desconto = 90,00
+    pedido = Pedido("Carla", [Item("Combo", 100.0, 1)])
+    assert pedido.total_com_desconto(10) == 90.0
+
+
 # =============================================================
 # PARTE 2 — Implemente com TDD
 # Siga o ciclo: 🔴 escreva o teste → 🟢 implemente → 🟡 refatore
