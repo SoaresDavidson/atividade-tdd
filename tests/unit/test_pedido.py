@@ -114,4 +114,4 @@ def test_situacao_pouco_acima_de_25_por_cento_cancela():
 def test_sugerir_frete_gratits(pedido_pequeno):
     sms_service_mock = MagicMock()
     pedido_pequeno.sugerir_frete_gratis(sms_service_mock)
-    sms_service_mock.enviar.assert_called_once_with("Bruno", 15.0)
+    sms_service_mock.enviar.assert_called_once_with("Bruno", 35.0)

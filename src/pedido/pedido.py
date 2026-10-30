@@ -3,11 +3,13 @@ from dataclasses import dataclass
 VALOR_FRETE_GRATIS = 50.0
 LIMITE_INDISPONIVEIS = 0.25
 
+
 @dataclass
 class Item:
     nome: str
     preco: float
     quantidade: int = 1
+
 
 class Pedido:
     def __init__(self, cliente: str, itens: list):
@@ -38,6 +40,10 @@ class Pedido:
         if self.tem_frete_gratis():
             return "Confirmado com frete grátis"
         return "Confirmado"
+
+    def sugerir_frete_gratis(self, sms_service) -> None:
+        if not self.tem_frete_gratis():
+            sms_service.enviar(self.cliente, VALOR_FRETE_GRATIS - self.subtotal())
 
 
 def contar_frete_gratis(pedidos: list) -> int:
